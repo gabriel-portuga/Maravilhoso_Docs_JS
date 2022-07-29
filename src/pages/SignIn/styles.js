@@ -16,7 +16,7 @@ export const Title = styled.Text`
     `
 export const TextoInput = styled.TextInput`
     border-bottom-width: 1px;
-    height: 40;
+    height: 40px;
     margin-top: 1px;
     margin-bottom: 12px;
     font-size:16px;
@@ -24,7 +24,7 @@ export const TextoInput = styled.TextInput`
 export const TextoInputSenha = styled.TextInput`
     flex:2;
     border-bottom-width: 1px;
-    height: 40;
+    height: 40px;
     margin-top: 1px;
     margin-bottom: 12px;
     font-size:16px;
@@ -44,7 +44,7 @@ export const ButtonText = styled.Text`
     font-weight: bold;
     `
 export const ButtonRegister = styled.TouchableOpacity`
-    margin-top:14;
+    margin-top: 14px;
     align-self: center;
     `
 export const RegisterText = styled.Text`
@@ -52,7 +52,7 @@ export const RegisterText = styled.Text`
     `
 export const OlhoMagico = styled.TouchableOpacity`
 width: 15%;
-height: 50;
+height: 50px;
 justify-content: center;
 align-items: center;
 `

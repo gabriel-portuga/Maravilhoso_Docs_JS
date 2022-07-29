@@ -47,7 +47,9 @@ export default function SignIn() {
                     <ButtonText>Acessar</ButtonText>
                 </ButtonPrincipal>
                 
-                <ButtonRegister>
+                <ButtonRegister
+                onPress={() => navigation.navigate('CadastrarConta')}
+                >
                     <RegisterText>Não possui uma conta? Cadastre-se</RegisterText>
                 </ButtonRegister>
 
