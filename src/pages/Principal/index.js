@@ -1,112 +1,69 @@
-import React from 'react';
-import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, StatusBar } from 'react-native';
+import React from "react";
+import { TouchableOpacity, View, StyleSheet, Image, Text, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { ButtonAcessar, ButtonText } from "../Welcome/styles";
 
-export default function Principal() {
-  
-    const Livros = [
-        {id:"0", title:"Contos Folclóricos e Lendas Brasileiras", autor:"Jossi Borges",image: require('../../../assets/livros/0.jpg')},
+export default function Principal(){
 
-        {id:"1", title:"Lendas Brasileiras", autor:"Luis Camara Cascudo", image: require('../../../assets/livros/1.jpg')},
+    const navigation = useNavigation();
 
-        {id:"2", title:"O Orfanato da Srta. Peregrine", autor:"Riggs Ransom", image: require('../../../assets/livros/2.jpg')},
+    return(
+        <ScrollView styles={styles.viewGeral}>
+            
+            <TouchableOpacity
+            onPress={() => navigation.navigate('Livros')}
+            style={styles.imageContainer} >
 
-        {id:"3", title:"Introdução a Literatura Fantastica", autor:"Todorov", image: require('../../../assets/livros/3.jpg')},
+                <Image source={require('../../../assets/icon_uerj.png')} style={styles.imageAvatar}/>
+                <Text style={styles.texto}>Livros</Text>
 
-        {id:"4", title:"Viajando pelo mundo do Era Uma Vez", autor:"Regina Michelli", image: require('../../../assets/livros/4.png')},
+            </TouchableOpacity>
 
-        {id:"5", title:"Contos de fadas", autor:"Marilena Chauí", image: require('../../../assets/livros/5.jpg')},
+            <TouchableOpacity
+            onPress={() => navigation.navigate('Quadrinhos')}
+            style={styles.imageContainer}>
 
-        {id:"6", title:"O Conto dos Contos", autor:"Giambatista Basile", image: require('../../../assets/livros/6.jpg')}
-    ]
-
-    const Item = ({ title, autor, image }) => (
-
-        <View style={ styles.item }>
-
-            <View style={ styles.avatarContainer }>
-            <Image source={ image } style={ styles.avatar }/>
+                <Image source={require('../../../assets/mafalda.png')} style={styles.imageAvatar}/>
+                <Text style={styles.texto}>Quadrinhos</Text>
+                
+            </TouchableOpacity>
+            <View style={{backgroundColor: 'fff', height: 100}}>
+                <Text style={{paddingTop: 8, alignSelf: 'center'}}>Cadastre uma história aqui</Text>
+                <ButtonAcessar onPress={() => navigation.navigate('CadastrarHistoria')}>
+                    <ButtonText>Cadastrar</ButtonText>
+                </ButtonAcessar>
             </View>
-
-            <View style={styles.textContainer}>
-                <Text style={ styles.name }>{title}</Text>
-                <Text style={styles.autor}>{autor}</Text>
-            </View>    
-        </View>
-      );
-
-    const renderItem = ({ item }) => (
-        <Item title={item.title} autor={item.autor} image={item.image}/>
-    );
-    
-
-    return (
-        <SafeAreaView style={styles.container}>
-          <FlatList
-            data={Livros}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
-        </SafeAreaView>
-    );
+        </ScrollView>
+    )
 }
 
-
-
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignSelf: 'center',
-    width: '90%',
-  },
+    viewGeral:{
+        flex:1,
+    },
 
-  item: {
-    flex: 1,
-    flexDirection: 'row',    
-    alignItems: 'center',
-    paddingVertical: 16,
-    
-        
-  },
+    imageContainer:{
+        flex:1,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingVertical: 10,
+        paddingTop: 30,
+        backgroundColor: '#FF9E9D'
+    },
 
-  avatarContainer: {        
-    height: 120,
-    width: '24%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
-  
-  avatar: {
-    height: '100%',
-    width: '100%',
-    resizeMode: 'stretch',
-    
-  },
+    imageAvatar:{
+        flex:1,
+        height: 180,
+        width: 180,
+        resizeMode: 'stretch',
+        padding: '40%',
 
-  textContainer: {
-    height: 120,
-    width: '76%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    },
+    texto:{
+        flex:1,
+        fontSize: 24,
+        color: 'white',
+        fontWeight: 'bold'
+    },
 
-  name: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginLeft: 16,
-    alignSelf: 'flex-start'
-  },
-  autor: {
-    fontSize: 16,
-    marginLeft: 16,
-    alignSelf: 'flex-start'
-  },
-
-});
-
-/*
-Obrigatório
-- Ter um button para direcionar ao cadastrar novo item
-- Criar uma *listagem* clicavel que abra uma *sublistagem*
-*/
+})

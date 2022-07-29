@@ -4,6 +4,9 @@ import Welcome from '../pages/Welcome'
 import SignIn from '../pages/SignIn'
 import Principal from '../pages/Principal';
 import CadastrarConta from '../pages/CadastrarConta';
+import Livros from '../pages/Livros';
+import Quadrinhos from '../pages/Quadrinhos';
+import CadastrarHistoria from '../pages/CadastrarHistoria';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +34,24 @@ export default function Routes() {
             <Stack.Screen
                 name="Principal"
                 component={Principal}
+                options={{ headerShown: false }}
+            />
+            
+            <Stack.Screen
+                name="Livros"
+                component={Livros}
+                options={{ headerShown: false }}
+            />
+           
+            <Stack.Screen
+                name="Quadrinhos"
+                component={Quadrinhos}
+                options={{ headerShown: false }}
+            />
+            
+            <Stack.Screen
+                name="CadastrarHistoria"
+                component={CadastrarHistoria}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>

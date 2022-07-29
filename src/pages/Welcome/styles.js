@@ -1,7 +1,7 @@
 import styled from "styled-components/native"
 
 export const ContainerGeral = styled.View`
-flex:1
+flex:1;
 background-color: #FF9E9D;
 `
 export const ContainerLogo = styled.View`
