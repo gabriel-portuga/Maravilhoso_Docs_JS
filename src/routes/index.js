@@ -1,9 +1,10 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import Welcome from '../pages/Welcome'
-import SignIn from '../pages/SignIn'
+import Welcome from '../pages/Welcome';
+import SignIn from '../pages/SignIn';
 import Principal from '../pages/Principal';
-import CadastrarConta from '../pages/CadastrarConta';
+import SignUp from '../pages/SignUp';
 import Livros from '../pages/Livros';
 import Quadrinhos from '../pages/Quadrinhos';
 import CadastrarHistoria from '../pages/CadastrarHistoria';
@@ -27,8 +28,8 @@ const Routes = () => {
             />
             
             <Stack.Screen
-                name="CadastrarConta"
-                component={CadastrarConta}
+                name="SignUp"
+                component={SignUp}
                 options={{ headerShown: false }}
             />
 
@@ -62,7 +63,9 @@ const Routes = () => {
 export default () => {
     return (
         <Provider>
-            <Routes/>
+            <SafeAreaProvider>
+                <Routes/>
+            </SafeAreaProvider>
         </Provider>
     )
 }

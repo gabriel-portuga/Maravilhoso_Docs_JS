@@ -1,16 +1,18 @@
-import React, { useState} from "react";
+import React, { useState, useContext } from "react";
 import { ContainerGeral, Menssage, Title, TextoInput, ButtonPrincipal, ButtonText, ButtonRegister, RegisterText, OlhoMagico, TextoInputSenha } from "./styles";
 import { StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
+import { Context } from "../../context/authContext";
 import * as Animatable from 'react-native-animatable'
 
 import { useNavigation } from "@react-navigation/native";
 
 export default function SignIn() {
     const navigation = useNavigation();
+    const {state, teste} = useContext(Context);
 
-    const [input, setInput] = useState('');
+    const [email, setEmail] = useState('');
+    const [psw, setPsw] = useState('');
     const [hidePass, setHidePass] = useState(true);
 
     return (
@@ -23,6 +25,8 @@ export default function SignIn() {
                 <Title>Email</Title>
                 <TextoInput 
                     placeholder="Digite um email..."
+                    value={email}
+                    onChangeText={(email) => setEmail(email)}
                 />
 
                 
@@ -30,8 +34,8 @@ export default function SignIn() {
                 <View style={{flexDirection: 'row'}}>
                     <TextoInputSenha 
                         placeholder="Digite sua senha..."
-                        value={input}
-                        onChangeText={(texto) => setInput(texto)}
+                        value={psw}
+                        onChangeText={(senha) => setPsw(senha)}
                         secureTextEntry={hidePass}
                     />
                     <OlhoMagico onPress={ () => setHidePass(!hidePass)}>
@@ -46,9 +50,15 @@ export default function SignIn() {
                 >
                     <ButtonText>Acessar</ButtonText>
                 </ButtonPrincipal>
+                        
+                <ButtonPrincipal id='Teste'
+                onPress={() => teste(psw)}
+                >
+                    <ButtonText>TesteLogin</ButtonText>
+                </ButtonPrincipal>
                 
                 <ButtonRegister
-                onPress={() => navigation.navigate('CadastrarConta')}
+                onPress={() => navigation.navigate('SignUp')}
                 >
                     <RegisterText>Não possui uma conta? Cadastre-se</RegisterText>
                 </ButtonRegister>

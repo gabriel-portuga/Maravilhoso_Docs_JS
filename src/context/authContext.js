@@ -11,7 +11,7 @@ const reducer = (state, action) => {
 
 const teste = (dispatch) => {
     return (args) => {
-        console.log("Teste");
+        console.log(args);
     };
 };
 
