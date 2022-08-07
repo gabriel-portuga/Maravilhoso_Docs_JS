@@ -7,10 +7,11 @@ import CadastrarConta from '../pages/CadastrarConta';
 import Livros from '../pages/Livros';
 import Quadrinhos from '../pages/Quadrinhos';
 import CadastrarHistoria from '../pages/CadastrarHistoria';
+import { Provider } from '../../src/context/authContext';
 
 const Stack = createNativeStackNavigator();
 
-export default function Routes() {
+const Routes = () => {
     return(
         <Stack.Navigator>
             <Stack.Screen
@@ -55,5 +56,13 @@ export default function Routes() {
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
+    )
+}
+
+export default () => {
+    return (
+        <Provider>
+            <Routes/>
+        </Provider>
     )
 }
