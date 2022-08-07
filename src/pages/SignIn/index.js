@@ -1,85 +1,125 @@
 import React, { useState, useContext } from "react";
-import { ContainerGeral, Menssage, Title, TextoInput, ButtonPrincipal, ButtonText, ButtonRegister, RegisterText, OlhoMagico, TextoInputSenha } from "./styles";
-import { StyleSheet, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Button, Text, TextInput } from "react-native-paper";
 import { Context } from "../../context/authContext";
 import * as Animatable from 'react-native-animatable'
+import EmailInput from "../../components/EmailInput";
 
-import { useNavigation } from "@react-navigation/native";
+const SignIn = ({ navigation }) => {
+    const { state, teste } = useContext(Context);
 
-export default function SignIn() {
-    const navigation = useNavigation();
-    const {state, teste} = useContext(Context);
-
-    const [email, setEmail] = useState('');
-    const [psw, setPsw] = useState('');
-    const [hidePass, setHidePass] = useState(true);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(true);
 
     return (
-        <ContainerGeral>
-            <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-                <Menssage>Bem-vinde</Menssage>
-            </Animatable.View>
+        <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
 
-            <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-                <Title>Email</Title>
-                <TextoInput 
-                    placeholder="Digite um email..."
+            <SafeAreaView style={styles.container}>
+                <Animatable.View animation="fadeInLeft" delay={500}>
+                    <Text style={styles.bemvinde}>Bem-vinde</Text>
+                </Animatable.View>
+
+                <Text style={styles.login}>Login</Text>
+                <EmailInput
                     value={email}
-                    onChangeText={(email) => setEmail(email)}
+                    setValue={setEmail}
                 />
-
+                <TextInput
+                    style={styles.textInput}
+                    label="Senha"
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    left={
+                        <TextInput.Icon
+                            name="lock"
+                            size={25}
+                            color="#ff6766"
+                        />
+                    }
+                    secureTextEntry={showPassword}
+                    right={
+                        showPassword ? (
+                            <TextInput.Icon
+                                name="eye"
+                                size={25}
+                                color="#ff6766"
+                                onPress={() => setShowPassword(!showPassword)}
+                            />
+                        ) : (
+                            <TextInput.Icon
+                                name="eye-off"
+                                size={25}
+                                color="#ff6766"
+                                onPress={() => setShowPassword(!showPassword)}
+                            />
+                        )
+                    }
+                />
+                <Button mode="contained" style={styles.loginButton}
+                    onPress={() => navigation.navigate('Principal')}
+                >
+                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
+                        Login
+                        </Text>
+                </Button>
                 
-                <Title>Senha</Title>
-                <View style={{flexDirection: 'row'}}>
-                    <TextoInputSenha 
-                        placeholder="Digite sua senha..."
-                        value={psw}
-                        onChangeText={(senha) => setPsw(senha)}
-                        secureTextEntry={hidePass}
-                    />
-                    <OlhoMagico onPress={ () => setHidePass(!hidePass)}>
-                        { hidePass ?
-                            <Ionicons name="eye" color="black" size={25}/> :
-                            <Ionicons name="eye-off" color="black" size={25}/>
-                        }
-                    </OlhoMagico>
-                </View>
-                <ButtonPrincipal
-                onPress={() => navigation.navigate('Principal')}
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("SignUp")}
+                    style={{ alignSelf: "center", marginBottom: 10, }}
                 >
-                    <ButtonText>Acessar</ButtonText>
-                </ButtonPrincipal>
-                        
-                <ButtonPrincipal id='Teste'
-                onPress={() => teste(psw)}
-                >
-                    <ButtonText>TesteLogin</ButtonText>
-                </ButtonPrincipal>
-                
-                <ButtonRegister
-                onPress={() => navigation.navigate('SignUp')}
-                >
-                    <RegisterText>Não possui uma conta? Cadastre-se</RegisterText>
-                </ButtonRegister>
-
-            </Animatable.View>
-        </ContainerGeral>
+                    <Text>
+                        Não tem uma conta?{" "}
+                        <Text style={styles.createAccountText}>
+                            Crie uma
+                        </Text>
+                    </Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
-    containerHeader:{
-        marginTop: '14%',
-        marginBottom: '8%',
-        paddingStart: '5%'
+    container: {
+        marginTop: "40%",
+        alignSelf: "center",
+        width: "80%",
+        backgroundColor: 'white',
+        borderRadius: 25
     },
-    containerForm:{
-        backgroundColor: '#fff',
-        flex:1,
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        paddingStart: '5%',
-        paddingEnd: '5%'
-    }
-})
+    bemvinde: {
+        color: 'black',
+        fontSize: 36,
+        fontWeight: "bold",
+        alignSelf: 'center',
+        paddingTop: 10,
+    },
+    login: {
+        color: '#ff6766',
+        fontSize: 36,
+        fontWeight: "bold",
+        marginBottom: 10,
+        paddingLeft: 20,
+        paddingTop: 10,
+    },
+    textInput: {
+        marginBottom: 10,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    loginButton: {
+        padding: 5,
+        margin: 20,
+        width: "50%",
+        alignSelf: "center",
+        backgroundColor: "#FF9E9D",
+    },
+    createAccountText: {
+        fontWeight: "bold",
+        color: "#FF9E9D",
+    },
+});
+
+export default SignIn;

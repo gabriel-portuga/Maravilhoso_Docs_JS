@@ -2,45 +2,27 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text, TextInput, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import EmailInput from "../../components/EmailInput";
+import NomeInput from "../../components/NomeInputs";
 
 const SignUp = ({ navigation }) => {
   const [name, setName] = useState("");
-  const [text, setText] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [showPassword, setShowPassword] = useState(true);
 
   return (
-    <View style={{backgroundColor: '#FF9E9D', flex: 1}}>
+    <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
       <SafeAreaView style={styles.container}>
         <Text style={styles.createAccount}>Criar conta</Text>
-        <TextInput
-          style={styles.textInput}
-          label="Nome"
-          mode="flat"
-          left={
-            <TextInput.Icon
-              name="account"
-              size={25}
-              color="black"
-            />
-          }
+        <NomeInput
           value={name}
-          onChangeText={(text) => setName(text)}
+          setValue={setName}
         />
-        <TextInput
-          style={styles.textInput}
-          label="E-mail"
-          mode="flat"
-          left={
-            <TextInput.Icon
-              name="at"
-              size={25}
-              color="black"
-            />
-          }
-          value={text}
-          onChangeText={(text) => setText(text)}
+        <EmailInput
+          value={email}
+          setValue={setEmail}
         />
 
         <TextInput
@@ -52,7 +34,7 @@ const SignUp = ({ navigation }) => {
             <TextInput.Icon
               name="lock"
               size={25}
-              color="black"
+              color="#ff6766"
             />
           }
           right={
@@ -60,14 +42,14 @@ const SignUp = ({ navigation }) => {
               <TextInput.Icon
                 name="eye"
                 size={25}
-                color="black"
+                color="#ff6766"
                 onPress={() => setShowPassword(!showPassword)}
               />
             ) : (
               <TextInput.Icon
                 name="eye-off"
                 size={25}
-                color="black"
+                color="#ff6766"
                 onPress={() => setShowPassword(!showPassword)}
               />
             )
@@ -77,11 +59,11 @@ const SignUp = ({ navigation }) => {
         />
 
         <Button style={styles.createButton} mode="contained">
-          <Text style={{fontSize: 16, fontWeight: 'bold', color: 'white'}}>Criar</Text>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Criar</Text>
         </Button>
         <TouchableOpacity
           onPress={() => navigation.navigate("SignIn")}
-          style={{alignSelf: "center"}}
+          style={{ alignSelf: "center", marginBottom: 10, }}
         >
           <Text>
             Já tem uma conta?{" "}
@@ -102,6 +84,7 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },
   createAccount: {
+    color: '#ff6766',
     fontSize: 36,
     fontWeight: "bold",
     marginBottom: 10,
@@ -112,7 +95,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 10,
     marginRight: 10,
-    
+
   },
   createButton: {
     padding: 5,
