@@ -1,97 +1,65 @@
 import React from "react";
-import { TouchableOpacity, View, StyleSheet, Image, Text, ScrollView } from "react-native";
+import { TouchableOpacity, View, Image, Text, ScrollView, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ButtonAcessar, ButtonText } from "../Welcome/styles";
 import { Button } from "react-native-paper";
-import  AsyncStorage  from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Principal = () => {
     const navigation = useNavigation();
 
     return (
-        <ScrollView styles={styles.viewGeral}>
+        <ScrollView style={{ backgroundColor: '#FF9E9D', height: '100%' }}>
 
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Livros')}
-                style={styles.imageContainer} >
+            <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 24, marginBottom: 24 }}>Maravilhoso_Docs</Text>
 
-                <Image source={require('../../../assets/icon_uerj.png')} style={styles.imageAvatar} />
-                <Text style={styles.texto}>Livros</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Livros')}
+                    style={{ height: 200, width: 200, alignItems: "center", justifyContent: 'space-around' }}
+                >
+                    <Image source={require('../../../assets/icon_uerj.png')}
+                        style={{ height: '85%', width: '85%' }} />
+                    <Text style={{ color: 'white', fontSize: 32, fontWeight: 'bold', }}>Livros</Text>
+                </TouchableOpacity>
 
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Quadrinhos')}
-                style={styles.imageContainer}>
-
-                <Image source={require('../../../assets/mafalda.png')} style={styles.imageAvatar} />
-                <Text style={styles.texto}>Quadrinhos</Text>
-
-            </TouchableOpacity>
-
-            <View style={{ backgroundColor: 'fff', height: 100 }}>
-
-                <View style={{ flexDirection: 'row' }}>
-                    <Button 
-                    mode="contained" style={styles.loginButton}
-                    onPress={() => navigation.navigate('CadastrarHistoria')}>
-                        <ButtonText>Cadastrar</ButtonText>
-                    </Button>
-
-                    <Button
-                        mode="contained" style={styles.loginButton}
-                        onPress={async () => {
-                            await AsyncStorage.removeItem("token");
-                            navigation.navigate('SignIn');
-                        }}
-                    >
-                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
-                            LogOut
-                        </Text>
-
-                    </Button>
-                </View>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Quadrinhos')}
+                    style={{ height: 200, width: 200, alignItems: "center", justifyContent: 'space-around' }}
+                >
+                    <Image source={require('../../../assets/artigos_default.png')}
+                        style={{ height: '85%', width: '85%' }} />
+                    <Text style={{ color: 'white', fontSize: 32, fontWeight: 'bold', }}>Artigos</Text>
+                </TouchableOpacity>
             </View>
+
+            <View style={{ backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 15, margin: 16, height: 100, alignItems: 'center' }}>
+
+                <Button
+                    mode="contained"
+                    onPress={() => navigation.navigate('CadastrarHistoria')}
+                    style={{ backgroundColor: '#FF9E9D', width: '40%', height: '40%', alignSelf: 'center', }}
+                >
+                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                        Cadastrar
+                    </Text>
+                </Button>
+
+                <Button
+                    mode="contained"
+                    style={{ backgroundColor: '#FF9E9D', width: '40%', height: '40%', alignSelf: 'center', }}
+                    onPress={async () => {
+                        await AsyncStorage.removeItem("token");
+                        navigation.navigate('SignIn')
+                    }}
+                >
+                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                        LogOut
+                    </Text>
+                </Button>
+            </View>
+
         </ScrollView>
     )
 }
-
-const styles = StyleSheet.create({
-    viewGeral: {
-        flex: 1,
-    },
-
-    imageContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        paddingVertical: 10,
-        paddingTop: 30,
-        backgroundColor: '#FF9E9D'
-    },
-
-    imageAvatar: {
-        flex: 1,
-        height: 180,
-        width: 180,
-        resizeMode: 'stretch',
-        padding: '40%',
-
-    },
-    texto: {
-        flex: 1,
-        fontSize: 24,
-        color: 'white',
-        fontWeight: 'bold'
-    },
-    loginButton: {
-        padding: 5,
-        margin: 20,
-        width: "50%",
-        alignSelf: "center",
-        backgroundColor: "#FF9E9D",
-    },
-
-})
 
 export default Principal;

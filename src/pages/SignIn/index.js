@@ -34,6 +34,15 @@ const SignIn = ({ navigation }) => {
                         showPassword={showPassword}
                         setShowPassword={setShowPassword}
                     />
+                    {state.loginError ? (
+                        <HelperText
+                            style={{ alignSelf: "center" }}
+                            type="error"
+                            visible={state.loginError}
+                        >
+                            Login inválido
+                        </HelperText>
+                    ) : null}
                     <Button
                         mode="contained" style={styles.loginButton}
                         onPress={() => {
@@ -51,16 +60,6 @@ const SignIn = ({ navigation }) => {
                             Login
                         </Text>
                     </Button>
-
-                    {state.loginError ? (
-                        <HelperText
-                            style={{ alignSelf: "center" }}
-                            type="error"
-                            visible={state.loginError}
-                        >
-                            Login inválido
-                        </HelperText>
-                    ) : null}
 
                     <TouchableOpacity
                         onPress={() => {

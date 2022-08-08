@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ContainerGeral, ContainerLogo, Title, Texto, ButtonAcessar, ButtonText } from './styles'
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import api from "../../api";
-
-import * as Animatable from 'react-native-animatable'
-
 import { useNavigation } from "@react-navigation/native";
+import * as Animatable from 'react-native-animatable'
 
 const Welcome = () => {
 
     let navegar = ""
+    const navigation = useNavigation();
 
     useEffect(() => {
         const singInToken = async () => {
@@ -30,8 +29,6 @@ const Welcome = () => {
         }
         singInToken()
     }, [])
-
-    const navigation = useNavigation();
 
     return (
         <ContainerGeral>

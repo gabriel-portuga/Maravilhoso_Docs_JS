@@ -20,6 +20,7 @@ margin: 32px 0px 8px;
 text-align: center;
 `
 export const Texto = styled.Text`
+padding-top: 8px;
 font-size: 16px;
 text-align: center;
 color: #A1A1A1;
