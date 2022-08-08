@@ -10,7 +10,7 @@ import {Context} from "../../context/authContext"
 
 const SignUp = ({ navigation }) => {
 
-  const {createUser} = useContext(Context)
+  const {createUser, setLoginError} = useContext(Context)
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,15 +43,22 @@ const SignUp = ({ navigation }) => {
         style={styles.createButton} 
         mode="contained"
         onPress={
-          () => {createUser(name, email, password)
-          navigation.navigate("SignIn")
+          () => {
+            if (name || email || password === ""){
+              setLoginError(true);
+              return
+            }
+            createUser(name, email, password)
+            navigation.navigate("SignIn")
         }}
         >
           <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Criar</Text>
         </Button>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("SignIn")}
+          onPress={() => {
+            setLoginError(false);
+            navigation.navigate("SignIn")}}
           style={{ alignSelf: "center", marginBottom: 10, }}
         >
           <Text>

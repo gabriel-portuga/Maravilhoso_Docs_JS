@@ -1,41 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
-import { TextInput } from "react-native-paper";
+import { HelperText, TextInput } from "react-native-paper";
+import { Context } from "../context/authContext";
 
 
-const PasswordInput = ({value, setValue, showPassword, setShowPassword}) => {
+const PasswordInput = ({ value, setValue, showPassword, setShowPassword }) => {
+    const { state } = useContext(Context);
     return (
-        <TextInput
-                    style={styles.textInput}
-                    label="Senha"
-                    value={value}
-                    onChangeText={(text) => setValue(text)}
-                    left={
+        <>
+            <TextInput
+                style={styles.textInput}
+                label="Senha"
+                value={value}
+                onChangeText={(text) => setValue(text)}
+                left={
+                    <TextInput.Icon
+                        name="lock"
+                        size={25}
+                        color="#ff6766"
+                    />
+                }
+                secureTextEntry={showPassword}
+                right={
+                    showPassword ? (
                         <TextInput.Icon
-                            name="lock"
+                            name="eye"
                             size={25}
                             color="#ff6766"
+                            onPress={() => setShowPassword(!showPassword)}
                         />
-                    }
-                    secureTextEntry={showPassword}
-                    right={
-                        showPassword ? (
-                            <TextInput.Icon
-                                name="eye"
-                                size={25}
-                                color="#ff6766"
-                                onPress={() => setShowPassword(!showPassword)}
-                            />
-                        ) : (
-                            <TextInput.Icon
-                                name="eye-off"
-                                size={25}
-                                color="#ff6766"
-                                onPress={() => setShowPassword(!showPassword)}
-                            />
-                        )
-                    }
-                />
+                    ) : (
+                        <TextInput.Icon
+                            name="eye-off"
+                            size={25}
+                            color="#ff6766"
+                            onPress={() => setShowPassword(!showPassword)}
+                        />
+                    )
+                }
+                error={state.loginError}
+            />
+            {state.loginError ? (
+                <HelperText type="error" visible={state.loginError}>
+                    Password inválida
+                </HelperText>
+            ) : null}
+        </>
     )
 }
 const styles = StyleSheet.create({

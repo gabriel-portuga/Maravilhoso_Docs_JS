@@ -2,18 +2,22 @@ import createContext from "./createContext";
 import api from "../api/index.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const initialState = {};
+const initialState = {
+  loginError: false
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "loginError":
+      return { ...state, loginError: action.payload}
     default:
       return state;
   }
 };
 
-const teste = (dispatch) => {
-  return (args) => {
-    console.log(args);
+const setLoginError = (dispatch) => {
+  return (boolean) => {
+    dispatch({type: "loginError", payload: boolean});
   };
 };
 
@@ -48,6 +52,6 @@ const loginUser = (dispatch) => {
 
 export const { Context, Provider } = createContext(
   reducer,
-  { teste, createUser, loginUser },
+  { setLoginError, createUser, loginUser },
   initialState,
 );
