@@ -2,6 +2,7 @@ import createContext from "./createContext";
 import api from "../api/index.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { ToastAndroid } from "react-native";
 
 const initialState = {
   loginError: false
@@ -32,9 +33,11 @@ const createUser = (dispatch) => {
         senha: senha,
       });
       navigation.navigate("SignIn");
+      ToastAndroid.show('Cadastrado com sucesso!!', ToastAndroid.LONG)
     } catch (e) {
       dispatch({ type: "loginError", payload: true });
       console.log(e)
+      ToastAndroid.show('Tente novamente!!', ToastAndroid.SHORT)
     }
   };
 };
