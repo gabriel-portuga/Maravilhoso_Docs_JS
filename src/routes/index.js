@@ -6,7 +6,7 @@ import SignIn from '../pages/SignIn';
 import Principal from '../pages/Principal';
 import SignUp from '../pages/SignUp';
 import Livros from '../pages/Livros';
-import Quadrinhos from '../pages/Quadrinhos';
+import Artigos from '../pages/Artigos';
 import CadastrarHistoria from '../pages/CadastrarHistoria';
 import { Provider } from '../../src/context/authContext';
 
@@ -46,8 +46,8 @@ const Routes = () => {
             />
            
             <Stack.Screen
-                name="Quadrinhos"
-                component={Quadrinhos}
+                name="Artigos"
+                component={Artigos}
                 options={{ headerShown: false }}
             />
             

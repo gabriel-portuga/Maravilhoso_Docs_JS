@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Quadrinhos() {
+export default function Artigos() {
 
     const navigation = useNavigation();
   
@@ -52,6 +52,7 @@ export default function Quadrinhos() {
 
     return (
         <SafeAreaView style={styles.container}>
+          <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 16}}>Artigos</Text>
           <FlatList
             data={Livros}
             renderItem={renderItem}

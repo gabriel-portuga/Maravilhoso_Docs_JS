@@ -52,6 +52,7 @@ export default function Livros() {
 
     return (
         <SafeAreaView style={styles.container}>
+          <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 16}}>Livros</Text>
           <FlatList
             data={Livros}
             renderItem={renderItem}

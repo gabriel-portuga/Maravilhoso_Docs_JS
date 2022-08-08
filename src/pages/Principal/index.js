@@ -23,7 +23,7 @@ const Principal = () => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Quadrinhos')}
+                    onPress={() => navigation.navigate('Artigos')}
                     style={{ height: 200, width: 200, alignItems: "center", justifyContent: 'space-around' }}
                 >
                     <Image source={require('../../../assets/artigos_default.png')}
