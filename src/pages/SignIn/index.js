@@ -1,19 +1,21 @@
 import React, { useState, useContext } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button, Text, TextInput } from "react-native-paper";
 import { Context } from "../../context/authContext";
 import * as Animatable from 'react-native-animatable'
 import EmailInput from "../../components/EmailInput";
+import PasswordInput from "../../components/PasswordInput";
 
 const SignIn = ({ navigation }) => {
-    const { state, teste } = useContext(Context);
+    const { loginUser } = useContext(Context);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(true);
 
     return (
+        <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
         <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
 
             <SafeAreaView style={styles.container}>
@@ -26,39 +28,18 @@ const SignIn = ({ navigation }) => {
                     value={email}
                     setValue={setEmail}
                 />
-                <TextInput
-                    style={styles.textInput}
-                    label="Senha"
+                <PasswordInput
                     value={password}
-                    onChangeText={(text) => setPassword(text)}
-                    left={
-                        <TextInput.Icon
-                            name="lock"
-                            size={25}
-                            color="#ff6766"
-                        />
-                    }
-                    secureTextEntry={showPassword}
-                    right={
-                        showPassword ? (
-                            <TextInput.Icon
-                                name="eye"
-                                size={25}
-                                color="#ff6766"
-                                onPress={() => setShowPassword(!showPassword)}
-                            />
-                        ) : (
-                            <TextInput.Icon
-                                name="eye-off"
-                                size={25}
-                                color="#ff6766"
-                                onPress={() => setShowPassword(!showPassword)}
-                            />
-                        )
-                    }
+                    setValue={setPassword}
+                    showPassword={showPassword}
+                    setShowPassword={setShowPassword}
                 />
-                <Button mode="contained" style={styles.loginButton}
-                    onPress={() => navigation.navigate('Principal')}
+                <Button 
+                    mode="contained" style={styles.loginButton}
+                    onPress={() => {
+                        loginUser(email, password)
+                        navigation.navigate('Principal')
+                    }}
                 >
                     <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
                         Login
@@ -78,6 +59,7 @@ const SignIn = ({ navigation }) => {
                 </TouchableOpacity>
             </SafeAreaView>
         </View>
+        </TouchableWithoutFeedback>
     );
 };
 
@@ -103,11 +85,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         paddingLeft: 20,
         paddingTop: 10,
-    },
-    textInput: {
-        marginBottom: 10,
-        marginLeft: 10,
-        marginRight: 10,
     },
     loginButton: {
         padding: 5,

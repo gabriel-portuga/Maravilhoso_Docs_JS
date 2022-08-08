@@ -3,8 +3,7 @@ import { TouchableOpacity, View, StyleSheet, Image, Text, ScrollView } from "rea
 import { useNavigation } from "@react-navigation/native";
 import { ButtonAcessar, ButtonText } from "../Welcome/styles";
 
-export default function Principal(){
-
+const Principal = () => {
     const navigation = useNavigation();
 
     return(
@@ -67,3 +66,5 @@ const styles = StyleSheet.create({
     },
 
 })
+
+export default Principal;

@@ -1,12 +1,36 @@
-import React from "react";
+import React, {useEffect} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ContainerGeral, ContainerLogo, Title, Texto, ButtonAcessar, ButtonText } from './styles'
 import { StyleSheet } from "react-native";
+import api from "../../api";
 
 import * as Animatable from 'react-native-animatable'
 
 import { useNavigation } from "@react-navigation/native";
 
-export default function Welcome() {
+const Welcome = () => {
+
+    let navegar = ""
+
+    useEffect(() => {
+        const singInToken = async () => {
+            const token = await AsyncStorage.getItem("token");
+            if (token) {
+                try {
+                    navegar = 'Principal'
+                    const data = await api.get("/", {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        }
+                    });
+                } catch (e) {
+                    navegar = 'SignIn'
+                }
+            } else {navegar = "SignIn"}
+        }
+        singInToken()
+    }, [])
+
     const navigation = useNavigation();
     
     return (
@@ -26,7 +50,7 @@ export default function Welcome() {
                 <Texto>Para começar essa aventura, aperte em acessar</Texto>
                 
                 <ButtonAcessar
-                onPress={() => navigation.navigate('SignIn')}
+                onPress={() => navigation.navigate(navegar)}
                 >
                     <ButtonText>Acessar</ButtonText>
                 </ButtonAcessar>
@@ -47,3 +71,5 @@ const styles = StyleSheet.create({
         paddingEnd: '5%'       
     }
 })
+
+export default Welcome

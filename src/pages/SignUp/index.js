@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Text, TextInput, Button } from "react-native-paper";
+import React, { useState, useContext } from "react";
+import { StyleSheet, TouchableOpacity, View, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Text, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import EmailInput from "../../components/EmailInput";
 import NomeInput from "../../components/NomeInputs";
+import PasswordInput from "../../components/PasswordInput";
+
+import {Context} from "../../context/authContext"
 
 const SignUp = ({ navigation }) => {
+
+  const {createUser} = useContext(Context)
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +19,7 @@ const SignUp = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(true);
 
   return (
+    <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
     <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
       <SafeAreaView style={styles.container}>
         <Text style={styles.createAccount}>Criar conta</Text>
@@ -25,42 +32,24 @@ const SignUp = ({ navigation }) => {
           setValue={setEmail}
         />
 
-        <TextInput
-          style={styles.textInput}
-          label="Senha"
-          mode="flat"
-          secureTextEntry={showPassword}
-          left={
-            <TextInput.Icon
-              name="lock"
-              size={25}
-              color="#ff6766"
-            />
-          }
-          right={
-            showPassword ? (
-              <TextInput.Icon
-                name="eye"
-                size={25}
-                color="#ff6766"
-                onPress={() => setShowPassword(!showPassword)}
-              />
-            ) : (
-              <TextInput.Icon
-                name="eye-off"
-                size={25}
-                color="#ff6766"
-                onPress={() => setShowPassword(!showPassword)}
-              />
-            )
-          }
+        <PasswordInput
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          setValue={setPassword}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
         />
 
-        <Button style={styles.createButton} mode="contained">
+        <Button 
+        style={styles.createButton} 
+        mode="contained"
+        onPress={
+          () => {createUser(name, email, password)
+          navigation.navigate("SignIn")
+        }}
+        >
           <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Criar</Text>
         </Button>
+
         <TouchableOpacity
           onPress={() => navigation.navigate("SignIn")}
           style={{ alignSelf: "center", marginBottom: 10, }}
@@ -72,6 +61,7 @@ const SignUp = ({ navigation }) => {
         </TouchableOpacity>
       </SafeAreaView>
     </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -90,12 +80,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingLeft: 20,
     paddingTop: 10,
-  },
-  textInput: {
-    marginBottom: 10,
-    marginLeft: 10,
-    marginRight: 10,
-
   },
   createButton: {
     padding: 5,
