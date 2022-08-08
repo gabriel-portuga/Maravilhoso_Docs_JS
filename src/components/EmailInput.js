@@ -8,6 +8,7 @@ const EmailInput = ({ value, setValue }) => {
   return (
     <>
       <TextInput
+        keyboardType="email-address"
         style={styles.textInput}
         label="E-mail"
         mode="flat"
