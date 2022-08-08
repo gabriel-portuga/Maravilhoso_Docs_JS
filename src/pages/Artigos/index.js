@@ -1,25 +1,25 @@
 import React from 'react';
-import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Artigos() {
 
     const navigation = useNavigation();
   
-    const Livros = [
-        {id:"0", title:"Contos Folclóricos e Lendas Brasileiras", autor:"Jossi Borges",image: require('../../../assets/livros/0.jpg'), pagina: 'Principal'},
+    const Artigos = [
+        {id:"0", title:"Contos Folclóricos e Lendas Brasileiras", autor:"Jossi Borges",image: require('../../../assets/artigos_default.png'), pagina: 'Principal'},
 
-        {id:"1", title:"Lendas Brasileiras", autor:"Luis Camara Cascudo", image: require('../../../assets/livros/1.jpg'), pagina: 'Principal'},
+        {id:"1", title:"Lendas Brasileiras", autor:"Luis Camara Cascudo", image: require('../../../assets/artigos_default.png'), pagina: 'Principal'},
 
-        {id:"2", title:"O Orfanato da Srta. Peregrine", autor:"Riggs Ransom", image: require('../../../assets/livros/2.jpg'), pagina: 'Principal'},
+        {id:"2", title:"O Orfanato da Srta. Peregrine", autor:"Riggs Ransom", image: require('../../../assets/artigos_default.png'), pagina: 'Principal'},
 
-        {id:"3", title:"Introdução a Literatura Fantastica", autor:"Todorov", image: require('../../../assets/livros/3.jpg'), pagina: 'Principal'},
+        {id:"3", title:"Introdução a Literatura Fantastica", autor:"Todorov", image: require('../../../assets/artigos_default.png'), pagina: 'Principal'},
 
-        {id:"4", title:"Viajando pelo mundo do Era Uma Vez", autor:"Regina Michelli", image: require('../../../assets/livros/4.png'), pagina: 'Principal'},
+        {id:"4", title:"Viajando pelo mundo do Era Uma Vez", autor:"Regina Michelli", image: require('../../../assets/artigos_default.png'), pagina: 'Principal'},
 
-        {id:"5", title:"Contos de fadas", autor:"Marilena Chauí", image: require('../../../assets/livros/5.jpg'), pagina: 'Principal'},
+        {id:"5", title:"Contos de fadas", autor:"Marilena Chauí", image: require('../../../assets/artigos_default.png'), pagina: 'Principal'},
 
-        {id:"6", title:"O Conto dos Contos", autor:"Giambatista Basile", image: require('../../../assets/livros/6.jpg'), pagina: 'Principal'}
+        {id:"6", title:"O Conto dos Contos", autor:"Giambatista Basile", image: require('../../../assets/artigos_default.png'), pagina: 'Principal'}
     ]
 
     const Item = ({ title, autor, image, onPress }) => (
@@ -54,16 +54,13 @@ export default function Artigos() {
         <SafeAreaView style={styles.container}>
           <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 16}}>Artigos</Text>
           <FlatList
-            data={Livros}
+            data={Artigos}
             renderItem={renderItem}
             keyExtractor={item => item.id}
           />
         </SafeAreaView>
     );
 }
-
-
-
 
 const styles = StyleSheet.create({
   container: {
