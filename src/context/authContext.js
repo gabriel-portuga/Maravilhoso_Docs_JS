@@ -23,6 +23,7 @@ const setLoginError = (dispatch) => {
 };
 
 const createUser = (dispatch) => {
+  const navigation = useNavigation();
   return async (nome, email, senha) => {
     try {
       await api.post("/criar", {
@@ -30,8 +31,10 @@ const createUser = (dispatch) => {
         email: email,
         senha: senha,
       });
+      navigation.navigate("SignIn");
     } catch (e) {
       dispatch({ type: "loginError", payload: true });
+      console.log(e)
     }
   };
 };

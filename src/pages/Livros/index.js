@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Livros() {
+const Livros = () => {
 
     const navigation = useNavigation();
   
@@ -63,8 +63,6 @@ export default function Livros() {
 }
 
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -120,3 +118,4 @@ const styles = StyleSheet.create({
 
 });
 
+export default Livros
