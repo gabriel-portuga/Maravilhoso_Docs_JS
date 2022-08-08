@@ -42,7 +42,7 @@ const PasswordInput = ({ value, setValue, showPassword, setShowPassword }) => {
             />
             {state.loginError ? (
                 <HelperText type="error" visible={state.loginError}>
-                    Password inválida
+                    
                 </HelperText>
             ) : null}
         </>

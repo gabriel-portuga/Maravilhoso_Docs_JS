@@ -1,6 +1,7 @@
 import createContext from "./createContext";
 import api from "../api/index.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const initialState = {
   loginError: false
@@ -30,22 +31,25 @@ const createUser = (dispatch) => {
         senha: senha,
       });
     } catch (e) {
-      console.log(e);
+      dispatch({ type: "loginError", payload: true });
     }
   };
 };
 
 const loginUser = (dispatch) => {
+  const navigation = useNavigation();
+
   return async (email, senha) => {
     try {
       const data = await api.post("/login", {
         email: email,
         senha: senha,
       });
-
       await AsyncStorage.setItem("token", data.data.token);
+      navigation.navigate('Principal');
     } catch (e) {
-      console.log(e);
+      dispatch({ type: "loginError", payload: true });
+      console.log(e)
     }
   };
 };

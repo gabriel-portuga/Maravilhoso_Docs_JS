@@ -24,7 +24,7 @@ const EmailInput = ({ value, setValue }) => {
       />
       {state.loginError ? (
         <HelperText type="error" visible={state.loginError}>
-          Email inválido
+          
         </HelperText>
       ) : null}
     </>

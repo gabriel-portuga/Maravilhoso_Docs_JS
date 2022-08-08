@@ -24,7 +24,7 @@ const NomeInput = ({ value, setValue }) => {
       />
       {state.loginError ? (
         <HelperText type="error" visible={state.loginError}>
-          Nome inválido
+          
         </HelperText>
       ) : null}
     </>

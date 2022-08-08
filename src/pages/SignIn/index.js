@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Button, Text, TextInput } from "react-native-paper";
+import { Button, Text, HelperText } from "react-native-paper";
 import { Context } from "../../context/authContext";
 import * as Animatable from 'react-native-animatable'
 import EmailInput from "../../components/EmailInput";
 import PasswordInput from "../../components/PasswordInput";
 
 const SignIn = ({ navigation }) => {
-    const { loginUser, setLoginError } = useContext(Context);
+    const { state, loginUser, setLoginError } = useContext(Context);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -16,55 +16,68 @@ const SignIn = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
-        <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
+            <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
 
-            <SafeAreaView style={styles.container}>
-                <Animatable.View animation="fadeInLeft" delay={500}>
-                    <Text style={styles.bemvinde}>Bem-vinde</Text>
-                </Animatable.View>
+                <SafeAreaView style={styles.container}>
+                    <Animatable.View animation="fadeInLeft" delay={500}>
+                        <Text style={styles.bemvinde}>Bem-vinde</Text>
+                    </Animatable.View>
 
-                <Text style={styles.login}>Login</Text>
-                <EmailInput
-                    value={email}
-                    setValue={setEmail}
-                />
-                <PasswordInput
-                    value={password}
-                    setValue={setPassword}
-                    showPassword={showPassword}
-                    setShowPassword={setShowPassword}
-                />
-                <Button 
-                    mode="contained" style={styles.loginButton}
-                    onPress={() => {
-                        if (email || password === ""){
-                            setLoginError(true);
-                            return
-                        } 
-                        loginUser(email, password)
-                        navigation.navigate('Principal')
-                    }}
-                >
-                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
-                        Login
+                    <Text style={styles.login}>Login</Text>
+                    <EmailInput
+                        value={email}
+                        setValue={setEmail}
+                    />
+                    <PasswordInput
+                        value={password}
+                        setValue={setPassword}
+                        showPassword={showPassword}
+                        setShowPassword={setShowPassword}
+                    />
+                    <Button
+                        mode="contained" style={styles.loginButton}
+                        onPress={() => {
+                            if ((email || password) === "") {
+                                setLoginError(true);
+                                return;
+                            }
+                            loginUser(email, password);
+
+                            setEmail("");
+                            setPassword("");
+                        }}
+                    >
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
+                            Login
                         </Text>
-                </Button>
-                
-                <TouchableOpacity
-                    onPress={() => {
-                        setLoginError(false);
-                        navigation.navigate("SignUp")}}
-                    style={{ alignSelf: "center", marginBottom: 10, }}
-                >
-                    <Text>
-                        Não tem uma conta?{" "}
-                        <Text style={styles.createAccountText}>
-                            Crie uma
+                    </Button>
+
+                    {state.loginError ? (
+                        <HelperText
+                            style={{ alignSelf: "center" }}
+                            type="error"
+                            visible={state.loginError}
+                        >
+                            Login inválido
+                        </HelperText>
+                    ) : null}
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            setLoginError(false);
+                            navigation.navigate("SignUp")
+                        }}
+                        style={{ alignSelf: "center", marginBottom: 10, }}
+                    >
+                        <Text>
+                            Não tem uma conta?{" "}
+                            <Text style={styles.createAccountText}>
+                                Crie uma
+                            </Text>
                         </Text>
-                    </Text>
-                </TouchableOpacity>
-            </SafeAreaView>
-        </View>
+                    </TouchableOpacity>
+                </SafeAreaView>
+            </View>
         </TouchableWithoutFeedback>
     );
 };

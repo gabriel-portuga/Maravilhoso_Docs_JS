@@ -17,12 +17,12 @@ const Welcome = () => {
             const token = await AsyncStorage.getItem("token");
             if (token) {
                 try {
-                    navegar = 'Principal'
                     const data = await api.get("/", {
                         headers: {
                             Authorization: `Bearer ${token}`,
                         }
                     });
+                    navegar = 'Principal'
                 } catch (e) {
                     navegar = 'SignIn'
                 }

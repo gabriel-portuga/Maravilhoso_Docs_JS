@@ -1,16 +1,16 @@
 import React, { useState, useContext } from "react";
 import { StyleSheet, TouchableOpacity, View, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { Text, Button } from "react-native-paper";
+import { Text, Button, HelperText } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import EmailInput from "../../components/EmailInput";
 import NomeInput from "../../components/NomeInputs";
 import PasswordInput from "../../components/PasswordInput";
 
-import {Context} from "../../context/authContext"
+import { Context } from "../../context/authContext"
 
 const SignUp = ({ navigation }) => {
 
-  const {createUser, setLoginError} = useContext(Context)
+  const { state, createUser, setLoginError } = useContext(Context)
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,54 +20,68 @@ const SignUp = ({ navigation }) => {
 
   return (
     <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
-    <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.createAccount}>Criar conta</Text>
-        <NomeInput
-          value={name}
-          setValue={setName}
-        />
-        <EmailInput
-          value={email}
-          setValue={setEmail}
-        />
+      <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <Text style={styles.createAccount}>Criar conta</Text>
+          <NomeInput
+            value={name}
+            setValue={setName}
+          />
+          <EmailInput
+            value={email}
+            setValue={setEmail}
+          />
 
-        <PasswordInput
-          value={password}
-          setValue={setPassword}
-          showPassword={showPassword}
-          setShowPassword={setShowPassword}
-        />
+          <PasswordInput
+            value={password}
+            setValue={setPassword}
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
+          />
 
-        <Button 
-        style={styles.createButton} 
-        mode="contained"
-        onPress={
-          () => {
-            if (name || email || password === ""){
-              setLoginError(true);
-              return
-            }
-            createUser(name, email, password)
-            navigation.navigate("SignIn")
-        }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Criar</Text>
-        </Button>
+          <Button
+            style={styles.createButton}
+            mode="contained"
+            onPress={
+              () => {
+                if ((name || email || password) === "") {
+                  setLoginError(true);
+                  return;
+                }
+                createUser(name, email, password)
+                navigation.navigate("SignIn")
+                setName("");
+                setEmail("");
+                setPassword("");
+              }}
+          >
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Criar</Text>
+          </Button>
 
-        <TouchableOpacity
-          onPress={() => {
-            setLoginError(false);
-            navigation.navigate("SignIn")}}
-          style={{ alignSelf: "center", marginBottom: 10, }}
-        >
-          <Text>
-            Já tem uma conta?{" "}
-            <Text style={styles.loginText}>Faça o login</Text>
-          </Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-    </View>
+          {state.loginError ? (
+            <HelperText
+              style={{ alignSelf: "center" }}
+              type="error"
+              visible={state.loginError}
+            >
+              Preencha os campos!
+            </HelperText>
+          ) : null}
+
+          <TouchableOpacity
+            onPress={() => {
+              setLoginError(false);
+              navigation.navigate("SignIn")
+            }}
+            style={{ alignSelf: "center", marginBottom: 10, }}
+          >
+            <Text>
+              Já tem uma conta?{" "}
+              <Text style={styles.loginText}>Faça o login</Text>
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
