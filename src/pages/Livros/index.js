@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import * as OpenAnything from 'react-native-openanything';
+import { ContainerGeral } from "../../styles";
 
 const Livros = () => {
   
@@ -49,25 +50,19 @@ const Livros = () => {
     
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ContainerGeral>
           <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 16}}>Livros</Text>
           <FlatList
             data={Livros}
             renderItem={renderItem}
             keyExtractor={item => item.id}
           />
-        </SafeAreaView>
+        </ContainerGeral>
     );
 }
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignSelf: 'center',
-    width: '100%',
-    backgroundColor: '#FF9E9D'
-  },
 
   item: {
     flex: 1,

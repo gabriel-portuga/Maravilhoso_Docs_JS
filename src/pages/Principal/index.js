@@ -3,12 +3,13 @@ import { TouchableOpacity, View, Image, Text, ScrollView, StyleSheet } from "rea
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ContainerGeral } from "../../styles";
 
 const Principal = () => {
     const navigation = useNavigation();
 
     return (
-        <ScrollView style={{ backgroundColor: '#FF9E9D', height: '100%' }}>
+        <ContainerGeral>
 
             <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 24, marginBottom: 24 }}>Maravilhoso_Docs</Text>
 
@@ -58,7 +59,7 @@ const Principal = () => {
                 </Button>
             </View>
 
-        </ScrollView>
+        </ContainerGeral>
     )
 }
 

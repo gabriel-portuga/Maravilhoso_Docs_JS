@@ -1,10 +1,6 @@
 import styled from "styled-components/native"
 
-
-export const ContainerGeral = styled.View`
-    flex:1;
-    background-color: #FF9E9D;
-    `
+/* 
 export const Menssage = styled.Text`
     font-size: 28px;
     font-weight: bold;
@@ -56,3 +52,4 @@ height: 50px;
 justify-content: center;
 align-items: center;
 `
+*/

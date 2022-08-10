@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ContainerGeral, ContainerLogo, Title, Texto, ButtonAcessar, ButtonText } from './styles'
+
+import {  Title, Texto, ButtonAcessar, ButtonText } from './styles';
+
+import { ContainerGeral, ContainerLogo, } from "../../styles";
 import { StyleSheet } from "react-native";
 import api from "../../api";
 import { useNavigation } from "@react-navigation/native";
-import * as Animatable from 'react-native-animatable'
+import * as Animatable from 'react-native-animatable';
 
 const Welcome = () => {
 

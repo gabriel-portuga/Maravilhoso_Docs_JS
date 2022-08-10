@@ -7,6 +7,7 @@ import NomeInput from "../../components/NomeInputs";
 import PasswordInput from "../../components/PasswordInput";
 
 import { Context } from "../../context/authContext"
+import { ContainerGeral } from "../../styles";
 
 const SignUp = ({ navigation }) => {
 
@@ -20,7 +21,7 @@ const SignUp = ({ navigation }) => {
 
   return (
     <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
-      <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
+      <ContainerGeral>
         <SafeAreaView style={styles.container}>
           <Text style={styles.createAccount}>Criar conta</Text>
           <NomeInput
@@ -80,7 +81,7 @@ const SignUp = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </SafeAreaView>
-      </View>
+      </ContainerGeral>
     </TouchableWithoutFeedback>
   );
 };

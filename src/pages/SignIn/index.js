@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
-import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button, Text, HelperText } from "react-native-paper";
 import { Context } from "../../context/authContext";
 import * as Animatable from 'react-native-animatable'
 import EmailInput from "../../components/EmailInput";
 import PasswordInput from "../../components/PasswordInput";
+import { ContainerGeral } from "../../styles";
 
 const SignIn = ({ navigation }) => {
     const { state, loginUser, setLoginError } = useContext(Context);
@@ -16,7 +17,7 @@ const SignIn = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
-            <View style={{ backgroundColor: '#FF9E9D', flex: 1 }}>
+            <ContainerGeral>
 
                 <SafeAreaView style={styles.container}>
                     <Animatable.View animation="fadeInLeft" delay={500}>
@@ -76,7 +77,7 @@ const SignIn = ({ navigation }) => {
                         </Text>
                     </TouchableOpacity>
                 </SafeAreaView>
-            </View>
+            </ContainerGeral>
         </TouchableWithoutFeedback>
     );
 };

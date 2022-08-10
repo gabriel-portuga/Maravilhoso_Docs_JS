@@ -1,0 +1,10 @@
+{
+    "colors":{
+        "rosa": "#FF9E9D",
+        "branco": "#FFFFFF",
+        "cinza": "#A1A1A1",
+        "preto": "#000000",
+        "rosaEscuro":"#FF6766",
+        "error": "#ff0000"
+    }
+}

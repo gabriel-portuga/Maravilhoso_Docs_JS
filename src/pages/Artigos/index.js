@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import * as OpenAnything from 'react-native-openanything';
+import { ContainerGeral } from "../../styles";
 
 export default function Artigos() {
   
@@ -43,30 +44,24 @@ export default function Artigos() {
         title={item.title} 
         autor={item.autor} 
         image={item.image}
-        onPress={() => OpenAnything.Pdf(item.pagina)}
+        onPress={() => OpenAnything.Open(item.pagina)}
         />
     );
     
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ContainerGeral>
           <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 16}}>Artigos</Text>
           <FlatList
             data={Artigos}
             renderItem={renderItem}
             keyExtractor={item => item.id}
           />
-        </SafeAreaView>
+        </ContainerGeral>
     );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignSelf: 'center',
-    width: '100%',
-    backgroundColor: '#FF9E9D'
-  },
 
   item: {
     flex: 1,

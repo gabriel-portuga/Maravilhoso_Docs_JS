@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView, StyleSheet } from "react-native";
+import { Text, TextInput, TouchableOpacity, SafeAreaView, StyleSheet, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { ContainerGeral } from "../../styles";
+import theme from '../../styles/theme.json'
 
 export default function CadastrarHistoria() {
 
@@ -22,7 +24,8 @@ export default function CadastrarHistoria() {
         console.log(data);
     }
     return (
-        <View style={styles.containerPrincipal}>
+        <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
+        <ContainerGeral>
             <SafeAreaView style={styles.ContainerSecundario}>
                 <Text style={styles.tituloPrincipal}> Cadastrar</Text>
 
@@ -31,7 +34,7 @@ export default function CadastrarHistoria() {
                     name="titulo"
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
-                            style={[styles.textoInput, { borderWidth: errors.titulo && 1, borderColor: errors.titulo && '#ff375b' }]}
+                            style={[styles.textoInput, { borderWidth: errors.titulo && 1, borderColor: errors.titulo && theme.colors.error }]}
                             onChangeText={onChange}
                             onBlur={onBlur}
                             value={value}
@@ -45,7 +48,7 @@ export default function CadastrarHistoria() {
                     name="autor"
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
-                            style={[styles.textoInput, { borderWidth: errors.autor && 1, borderColor: errors.autor && '#ff375b' }]}
+                            style={[styles.textoInput, { borderWidth: errors.autor && 1, borderColor: errors.autor && theme.colors.error }]}
                             onChangeText={onChange}
                             onBlur={onBlur}
                             value={value}
@@ -60,7 +63,7 @@ export default function CadastrarHistoria() {
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
                             keyboardType="number-pad"
-                            style={[styles.textoInput, { borderWidth: errors.ano && 1, borderColor: errors.ano && '#ff375b' }]}
+                            style={[styles.textoInput, { borderWidth: errors.ano && 1, borderColor: errors.ano && theme.colors.error }]}
                             onChangeText={onChange}
                             onBlur={onBlur}
                             value={value}
@@ -76,7 +79,8 @@ export default function CadastrarHistoria() {
                 </TouchableOpacity>
             </SafeAreaView>
 
-        </View>
+        </ContainerGeral>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -104,9 +108,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginLeft: 10,
         marginRight: 10,
-    },
-    containerPrincipal: {
-        backgroundColor: '#FF9E9D', flex: 1
     },
     ContainerSecundario: {
         marginTop: "40%",
