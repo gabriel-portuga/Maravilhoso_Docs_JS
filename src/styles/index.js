@@ -40,16 +40,20 @@ export const BotaoPadraoTexto = styled.Text`
     color: white;
     font-weight: bold;
 `
+export const ContainerPrimario = styled.View`
+    flex-direction: row;
+    justify-content: space-around;
+`
 export const AvatarContainer = styled.TouchableOpacity`
-    height: '';
-    width: '';
-    justify-content: '';
-    align-items: '';
+    height: 200px;
+    width: 200px;
+    justify-content: space-around;
+    align-items: center;
 `
 export const AvatarImage = styled.Image`
-    height: '';
-    width: '';
-    resize: '';
+    height: 85%;
+    width: 85%;
+    resize: ${(props) => props.reSize || 'none'};
 `
 export const Titulo = styled.Text`
     font-size: ${(props) => props.size || '36px'};

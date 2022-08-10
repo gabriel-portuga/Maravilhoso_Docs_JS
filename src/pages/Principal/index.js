@@ -1,9 +1,7 @@
 import React from "react";
-import { TouchableOpacity, View, Image, Text, ScrollView, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ContainerGeral, ContainerWhite } from "../../styles";
+import { AvatarContainer, AvatarImage, BotaoPadrao, BotaoPadraoTexto, ContainerGeral, ContainerPrimario, ContainerWhite, Titulo } from "../../styles";
 
 const Principal = () => {
     const navigation = useNavigation();
@@ -11,52 +9,37 @@ const Principal = () => {
     return (
         <ContainerGeral>
 
-            <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 24, marginBottom: 24 }}>Maravilhoso_Docs</Text>
+            <Titulo alignSelf='center' color='branco' margin='50px 5px 30px 5px' size='48px'>Maravilhoso_Docs</Titulo>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Livros')}
-                    style={{ height: 200, width: 200, alignItems: "center", justifyContent: 'space-around' }}
-                >
-                    <Image source={require('../../../assets/icon_uerj.png')}
-                        style={{ height: '85%', width: '85%' }} />
-                    <Text style={{ color: 'white', fontSize: 32, fontWeight: 'bold', }}>Livros</Text>
-                </TouchableOpacity>
+            <ContainerPrimario>
 
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Artigos')}
-                    style={{ height: 200, width: 200, alignItems: "center", justifyContent: 'space-around' }}
-                >
-                    <Image source={require('../../../assets/artigos_default.png')}
-                        style={{ height: '85%', width: '85%' }} />
-                    <Text style={{ color: 'white', fontSize: 32, fontWeight: 'bold', }}>Artigos</Text>
-                </TouchableOpacity>
-            </View>
+                <AvatarContainer onPress={() => navigation.navigate('Livros')}>
+                    <AvatarImage source={require('../../../assets/icon_uerj.png')} />
+                    <Titulo color='branco'>Livros</Titulo>
+                </AvatarContainer>
+
+                <AvatarContainer onPress={() => navigation.navigate('Artigos')}>
+                    <AvatarImage source={require('../../../assets/artigos_default.png')} />
+                    <Titulo style={{ color: 'white', fontSize: 32, fontWeight: 'bold', }}>Artigos</Titulo>
+                </AvatarContainer>
+
+            </ContainerPrimario>
 
             <ContainerWhite direction='row' marginTop='8%' height='100px' >
 
-                <Button
-                    mode="contained"
-                    onPress={() => navigation.navigate('CadastrarHistoria')}
-                    style={{ backgroundColor: '#FF9E9D', width: '40%', height: '40%', alignSelf: 'center', }}
-                >
-                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-                        Cadastrar
-                    </Text>
-                </Button>
+                <BotaoPadrao onPress={() => navigation.navigate('CadastrarHistoria')}>
+                    <BotaoPadraoTexto> Cadastrar </BotaoPadraoTexto>
+                </BotaoPadrao>
 
-                <Button
-                    mode="contained"
-                    style={{ backgroundColor: '#FF9E9D', width: '40%', height: '40%', alignSelf: 'center', }}
+                <BotaoPadrao
                     onPress={async () => {
                         await AsyncStorage.removeItem("token");
                         navigation.navigate('SignIn')
                     }}
                 >
-                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-                        LogOut
-                    </Text>
-                </Button>
+                    <BotaoPadraoTexto> LogOut </BotaoPadraoTexto>
+                </BotaoPadrao>
+
             </ContainerWhite>
 
         </ContainerGeral>
