@@ -6,6 +6,14 @@ export const ContainerGeral = styled.SafeAreaView`
     background-color: ${(props) => props.color ? theme.colors[props.color] : theme.colors.rosa};
 `
 export const ContainerWhite = styled.View`
+    background-color: ${theme.colors.branco};
+    width: 80%;
+    height: ${(props) => props.height || 'auto'};
+    border-radius: 24px;
+    align-self: center;
+    margin-top: ${(props) => props.marginTop || '40%'};
+    flex-direction: ${(props) => props.direction || 'column'};
+    justify-content: space-around;
 
 `
 export const ContainerLogoPrincipal = styled.View`
@@ -54,6 +62,7 @@ export const Titulo = styled.Text`
 `
 
 export const Subtitulo = styled.Text`
+    font-weight: ${(props) => props.fontWeight || 'normal'};
     padding-top: ${(props) => props.padding || '0px'};
     font-size: ${(props) => props.size || '16px'};
     text-align: center;

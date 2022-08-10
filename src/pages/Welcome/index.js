@@ -43,7 +43,7 @@ const Welcome = () => {
             </ContainerLogoPrincipal>
 
             <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
-                <Titulo size='24px' margin='32px 0px 8px 0px' textAlign='center'>Todos os contos em um único lugar!</Titulo>
+                <Titulo size='24px' margin='32px 0px 0px 0px' textAlign='center'>Todos os contos em um único lugar!</Titulo>
 
                 <BotaoPadrao onPress={() => navigation.navigate(navegar)} >
                     <BotaoPadraoTexto>Acessar</BotaoPadraoTexto>

@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Image, Text, ScrollView, StyleSheet } from "rea
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ContainerGeral } from "../../styles";
+import { ContainerGeral, ContainerWhite } from "../../styles";
 
 const Principal = () => {
     const navigation = useNavigation();
@@ -33,7 +33,7 @@ const Principal = () => {
                 </TouchableOpacity>
             </View>
 
-            <View style={{ backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 15, margin: 16, height: 100, alignItems: 'center' }}>
+            <ContainerWhite direction='row' marginTop='8%' height='100px' >
 
                 <Button
                     mode="contained"
@@ -57,7 +57,7 @@ const Principal = () => {
                         LogOut
                     </Text>
                 </Button>
-            </View>
+            </ContainerWhite>
 
         </ContainerGeral>
     )

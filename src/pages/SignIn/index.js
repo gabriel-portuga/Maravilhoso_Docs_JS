@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Button, Text, HelperText } from "react-native-paper";
+import { TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { HelperText } from "react-native-paper";
 import { Context } from "../../context/authContext";
 import * as Animatable from 'react-native-animatable'
 import EmailInput from "../../components/EmailInput";
 import PasswordInput from "../../components/PasswordInput";
-import { ContainerGeral, Titulo } from "../../styles";
+import { BotaoPadrao, BotaoPadraoTexto, ContainerGeral, ContainerWhite, Subtitulo, Titulo } from "../../styles";
 
 const SignIn = ({ navigation }) => {
     const { state, loginUser, setLoginError } = useContext(Context);
@@ -18,13 +17,13 @@ const SignIn = ({ navigation }) => {
     return (
         <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
             <ContainerGeral>
-
-                <SafeAreaView style={styles.container}>
+                <ContainerWhite >
                     <Animatable.View animation="fadeInLeft" delay={500}>
                         <Titulo alignSelf='center' padding='10px 0px 0px 0px'>Bem-vinde</Titulo>
                     </Animatable.View>
 
                     <Titulo color='rosaEscuro' margin='0px 0px 10px 0px' padding='10px 0px 0px 20px'>Login</Titulo>
+
                     <EmailInput
                         value={email}
                         setValue={setEmail}
@@ -44,8 +43,8 @@ const SignIn = ({ navigation }) => {
                             Login inválido
                         </HelperText>
                     ) : null}
-                    <Button
-                        mode="contained" style={styles.loginButton}
+
+                    <BotaoPadrao
                         onPress={() => {
                             if ((email || password) === "") {
                                 setLoginError(true);
@@ -57,10 +56,8 @@ const SignIn = ({ navigation }) => {
                             setPassword("");
                         }}
                     >
-                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
-                            Login
-                        </Text>
-                    </Button>
+                        <BotaoPadraoTexto> Login </BotaoPadraoTexto>
+                    </BotaoPadrao>
 
                     <TouchableOpacity
                         onPress={() => {
@@ -69,39 +66,18 @@ const SignIn = ({ navigation }) => {
                         }}
                         style={{ alignSelf: "center", marginBottom: 10, }}
                     >
-                        <Text>
+                        <Subtitulo color='preto'>
                             Não tem uma conta?{" "}
-                            <Text style={styles.createAccountText}>
+                            <Subtitulo color='rosaEscuro' fontWeight='bold'>
                                 Crie uma
-                            </Text>
-                        </Text>
+                            </Subtitulo>
+                        </Subtitulo>
                     </TouchableOpacity>
-                </SafeAreaView>
+
+                </ContainerWhite>
             </ContainerGeral>
         </TouchableWithoutFeedback>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        marginTop: "40%",
-        alignSelf: "center",
-        width: "80%",
-        backgroundColor: 'white',
-        borderRadius: 25
-    },
-
-    loginButton: {
-        padding: 5,
-        margin: 20,
-        width: "50%",
-        alignSelf: "center",
-        backgroundColor: "#FF9E9D",
-    },
-    createAccountText: {
-        fontWeight: "bold",
-        color: "#FF9E9D",
-    },
-});
 
 export default SignIn;

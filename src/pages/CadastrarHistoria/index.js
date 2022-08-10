@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Text, TextInput, TouchableOpacity, SafeAreaView, StyleSheet, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Text, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { ContainerGeral } from "../../styles";
+import { BotaoPadrao, BotaoPadraoTexto, ContainerGeral, ContainerWhite, Titulo } from "../../styles";
 import theme from '../../styles/theme.json'
 
 export default function CadastrarHistoria() {
@@ -12,7 +12,7 @@ export default function CadastrarHistoria() {
     const schema = yup.object({
         titulo: yup.string().required("Informe um título!"),
         autor: yup.string().required("Informe um autor!"),
-        ano: yup.number().min(2, "Ano com 4 dígitos!").required("Digite um ano de publicaçao")
+        link: yup.string().required("Informe um link!"),
     })
 
     const navigation = useNavigation();
@@ -26,8 +26,8 @@ export default function CadastrarHistoria() {
     return (
         <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
         <ContainerGeral>
-            <SafeAreaView style={styles.ContainerSecundario}>
-                <Text style={styles.tituloPrincipal}> Cadastrar</Text>
+            <ContainerWhite>
+                <Titulo color='rosaEscuro' margin='0px 0px 10px 0px' padding='10px 0px 5px 20px'> Cadastrar</Titulo>
 
                 <Controller
                     control={control}
@@ -59,27 +59,25 @@ export default function CadastrarHistoria() {
                 {errors.autor && <Text style={styles.labelError}>{errors.autor?.message}</Text>}
                 <Controller
                     control={control}
-                    name="ano"
+                    name="link"
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
-                            keyboardType="number-pad"
                             style={[styles.textoInput, { borderWidth: errors.ano && 1, borderColor: errors.ano && theme.colors.error }]}
                             onChangeText={onChange}
                             onBlur={onBlur}
                             value={value}
-                            placeholder="Ano da publicação"
+                            placeholder="Link da publicação"
                         />
                     )}
                 />
                 {errors.ano && <Text style={styles.labelError}>{errors.ano?.message}</Text>}
                
-                <TouchableOpacity
-                    style={styles.botaoCadastrar}
+                <BotaoPadrao
                     onPress={handleSubmit(handleCadastrar)}>
-                    <Text style={styles.textoBotao}>Cadastrar</Text>
-                </TouchableOpacity>
-                
-            </SafeAreaView>
+                    <BotaoPadraoTexto>Cadastrar</BotaoPadraoTexto>
+                </BotaoPadrao>
+
+            </ContainerWhite>
 
         </ContainerGeral>
         </TouchableWithoutFeedback>
@@ -87,9 +85,6 @@ export default function CadastrarHistoria() {
 }
 
 const styles = StyleSheet.create({
-    textoBotao: {
-        fontSize: 16, fontWeight: 'bold', color: 'white', alignSelf: 'center'
-    },
     tituloPrincipal: {
         color: '#ff6766',
         fontSize: 40,
@@ -97,26 +92,11 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         alignSelf: 'center'
     },
-    botaoCadastrar: {
-        padding: 5,
-        margin: 20,
-        width: "50%",
-        alignSelf: "center",
-        backgroundColor: "#FF9E9D",
-        borderRadius: 10
-    },
     textoInput: {
         fontSize: 14,
         marginBottom: 10,
         marginLeft: 10,
         marginRight: 10,
-    },
-    ContainerSecundario: {
-        marginTop: "40%",
-        alignSelf: "center",
-        width: "80%",
-        backgroundColor: 'white',
-        borderRadius: 25
     },
     labelError: {
         alignSelf: 'flex-start',

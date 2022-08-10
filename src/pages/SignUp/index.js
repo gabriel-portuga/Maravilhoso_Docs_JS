@@ -1,13 +1,12 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, TouchableOpacity, View, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Text, Button, HelperText } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
 import EmailInput from "../../components/EmailInput";
 import NomeInput from "../../components/NomeInputs";
 import PasswordInput from "../../components/PasswordInput";
 
 import { Context } from "../../context/authContext"
-import { ContainerGeral } from "../../styles";
+import { ContainerGeral, ContainerWhite } from "../../styles";
 
 const SignUp = ({ navigation }) => {
 
@@ -22,7 +21,7 @@ const SignUp = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
       <ContainerGeral>
-        <SafeAreaView style={styles.container}>
+        <ContainerWhite>
           <Text style={styles.createAccount}>Criar conta</Text>
           <NomeInput
             value={name}
@@ -80,20 +79,14 @@ const SignUp = ({ navigation }) => {
               <Text style={styles.loginText}>Faça o login</Text>
             </Text>
           </TouchableOpacity>
-        </SafeAreaView>
+        </ContainerWhite>
       </ContainerGeral>
     </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: "40%",
-    alignSelf: "center",
-    width: "80%",
-    backgroundColor: 'white',
-    borderRadius: 25
-  },
+
   createAccount: {
     color: '#ff6766',
     fontSize: 36,
