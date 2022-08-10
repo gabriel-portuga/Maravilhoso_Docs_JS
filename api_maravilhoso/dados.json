@@ -22,5 +22,13 @@
     "dados": {},
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzUzOTQwOTQzNCwiaWF0IjoxNjYwMDExNDM4fQ.vrn9-9H7IDsatZW_bAxreRPN2fj6feIGiZB91V1LKKY",
     "hash": "$2b$10$SB1eqUj/9rniBzxASi12a.FC.diRhA5TU3zisRxU67iVGbB/XZVQW"
+  },
+  {
+    "id": 6214303151,
+    "nome": "Teste",
+    "email": "teste@teste.com",
+    "dados": {},
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIxNDMwMzE1MSwiaWF0IjoxNjYwMTY4MzY3fQ.wEBBYDL-2i1Uo39g9TY_KX323s4oD8cmVejgTWX6iiA",
+    "hash": "$2b$10$c2lhQNN9QCWQa1nGOZjr8euG7G0Boup5dPln1wU0Lyaf5jj44uHCm"
   }
 ]

@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { Text, Button, HelperText } from "react-native-paper";
+import { TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { HelperText } from "react-native-paper";
 import EmailInput from "../../components/EmailInput";
 import NomeInput from "../../components/NomeInputs";
 import PasswordInput from "../../components/PasswordInput";
-
 import { Context } from "../../context/authContext"
-import { ContainerGeral, ContainerWhite } from "../../styles";
+import { BotaoPadrao, BotaoPadraoTexto, ContainerGeral, ContainerWhite, Subtitulo, Titulo } from "../../styles";
 
 const SignUp = ({ navigation }) => {
 
@@ -22,7 +21,8 @@ const SignUp = ({ navigation }) => {
     <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
       <ContainerGeral>
         <ContainerWhite>
-          <Text style={styles.createAccount}>Criar conta</Text>
+          <Titulo color='rosaEscuro' margin='0px 0px 10px 0px' padding='10px 0px 0px 20px'>Criar conta</Titulo>
+
           <NomeInput
             value={name}
             setValue={setName}
@@ -31,7 +31,6 @@ const SignUp = ({ navigation }) => {
             value={email}
             setValue={setEmail}
           />
-
           <PasswordInput
             value={password}
             setValue={setPassword}
@@ -39,23 +38,21 @@ const SignUp = ({ navigation }) => {
             setShowPassword={setShowPassword}
           />
 
-          <Button
-            style={styles.createButton}
-            mode="contained"
-            onPress={
-              () => {
-                if ((name || email || password) === "") {
-                  setLoginError(true);
-                  return;
-                }
-                createUser(name, email, password)
-                setName("");
-                setEmail("");
-                setPassword("");
-              }}
+          <BotaoPadrao
+            onPress={() => {
+              if ((name || email || password) === "") {
+                setLoginError(true);
+                return;
+              }
+              createUser(name, email, password)
+
+              setName("");
+              setEmail("");
+              setPassword("");
+            }}
           >
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Criar</Text>
-          </Button>
+            <BotaoPadraoTexto> Criar </BotaoPadraoTexto>
+          </BotaoPadrao>
 
           {state.loginError ? (
             <HelperText
@@ -74,38 +71,15 @@ const SignUp = ({ navigation }) => {
             }}
             style={{ alignSelf: "center", marginBottom: 10, }}
           >
-            <Text>
-              Já tem uma conta?{" "}
-              <Text style={styles.loginText}>Faça o login</Text>
-            </Text>
+            <Subtitulo color='preto'>Já tem uma conta?{" "}
+              <Subtitulo color='rosaEscuro' fontWeight='bold'>Faça o login</Subtitulo>
+            </Subtitulo>
           </TouchableOpacity>
+
         </ContainerWhite>
       </ContainerGeral>
     </TouchableWithoutFeedback>
   );
 };
-
-const styles = StyleSheet.create({
-
-  createAccount: {
-    color: '#ff6766',
-    fontSize: 36,
-    fontWeight: "bold",
-    marginBottom: 10,
-    paddingLeft: 20,
-    paddingTop: 10,
-  },
-  createButton: {
-    padding: 5,
-    margin: 20,
-    width: "50%",
-    alignSelf: "center",
-    backgroundColor: "#FF9E9D",
-  },
-  loginText: {
-    fontWeight: "bold",
-    color: "#FF9E9D",
-  },
-});
 
 export default SignUp;
