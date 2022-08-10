@@ -72,11 +72,13 @@ export default function CadastrarHistoria() {
                     )}
                 />
                 {errors.ano && <Text style={styles.labelError}>{errors.ano?.message}</Text>}
+               
                 <TouchableOpacity
                     style={styles.botaoCadastrar}
                     onPress={handleSubmit(handleCadastrar)}>
                     <Text style={styles.textoBotao}>Cadastrar</Text>
                 </TouchableOpacity>
+                
             </SafeAreaView>
 
         </ContainerGeral>

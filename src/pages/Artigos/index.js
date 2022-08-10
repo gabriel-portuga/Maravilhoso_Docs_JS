@@ -35,6 +35,7 @@ export default function Artigos() {
             <View style={styles.textContainer}>
                 <Text style={ styles.name }>{title}</Text>
                 <Text style={styles.autor}>{autor}</Text>
+                <Text style={{ marginLeft: 16, alignSelf: 'flex-start'}}> {'<- Click aqui'}</Text>
             </View>    
         </View>
       );

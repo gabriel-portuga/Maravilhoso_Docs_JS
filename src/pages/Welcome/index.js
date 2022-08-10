@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import {  Title, Texto, ButtonAcessar, ButtonText } from './styles';
-
-import { ContainerGeral, ContainerLogo, } from "../../styles";
+import { BotaoPadrao, BotaoPadraoTexto, ContainerGeral, ContainerLogoPrincipal, Subtitulo, Titulo, } from "../../styles";
 import { StyleSheet } from "react-native";
 import api from "../../api";
 import { useNavigation } from "@react-navigation/native";
@@ -36,27 +33,23 @@ const Welcome = () => {
     return (
         <ContainerGeral>
 
-            <ContainerLogo>
+            <ContainerLogoPrincipal>
                 <Animatable.Image
                     animation="flipInY"
                     source={require('../../../assets/logo_principal.png')}
                     style={{ width: '100%' }}
                     resizeMode="contain"
                 />
-            </ContainerLogo>
+            </ContainerLogoPrincipal>
 
             <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
+                <Titulo size='24px' margin='32px 0px 8px 0px' textAlign='center'>Todos os contos em um único lugar!</Titulo>
 
-                <Title>Todos os contos em um único lugar!</Title>
+                <BotaoPadrao onPress={() => navigation.navigate(navegar)} >
+                    <BotaoPadraoTexto>Acessar</BotaoPadraoTexto>
+                </BotaoPadrao>
 
-                <ButtonAcessar
-                    onPress={() => navigation.navigate(navegar)}
-                >
-                    <ButtonText>Acessar</ButtonText>
-                </ButtonAcessar>
-
-                <Texto>Para começar essa aventura, aperte em acessar</Texto>
-
+                <Subtitulo>Para começar essa aventura, aperte em acessar</Subtitulo>
             </Animatable.View>
 
         </ContainerGeral>
@@ -69,8 +62,8 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         flex: 1,
         backgroundColor: '#fff',
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
+        borderTopLeftRadius: 32,
+        borderTopRightRadius: 32,
         paddingStart: '5%',
         paddingEnd: '5%'
     }

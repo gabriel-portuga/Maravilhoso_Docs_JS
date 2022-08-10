@@ -6,7 +6,7 @@ import { Context } from "../../context/authContext";
 import * as Animatable from 'react-native-animatable'
 import EmailInput from "../../components/EmailInput";
 import PasswordInput from "../../components/PasswordInput";
-import { ContainerGeral } from "../../styles";
+import { ContainerGeral, Titulo } from "../../styles";
 
 const SignIn = ({ navigation }) => {
     const { state, loginUser, setLoginError } = useContext(Context);
@@ -21,10 +21,10 @@ const SignIn = ({ navigation }) => {
 
                 <SafeAreaView style={styles.container}>
                     <Animatable.View animation="fadeInLeft" delay={500}>
-                        <Text style={styles.bemvinde}>Bem-vinde</Text>
+                        <Titulo alignSelf='center' padding='10px 0px 0px 0px'>Bem-vinde</Titulo>
                     </Animatable.View>
 
-                    <Text style={styles.login}>Login</Text>
+                    <Titulo color='rosaEscuro' margin='0px 0px 10px 0px' padding='10px 0px 0px 20px'>Login</Titulo>
                     <EmailInput
                         value={email}
                         setValue={setEmail}
@@ -90,21 +90,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 25
     },
-    bemvinde: {
-        color: 'black',
-        fontSize: 36,
-        fontWeight: "bold",
-        alignSelf: 'center',
-        paddingTop: 10,
-    },
-    login: {
-        color: '#ff6766',
-        fontSize: 36,
-        fontWeight: "bold",
-        marginBottom: 10,
-        paddingLeft: 20,
-        paddingTop: 10,
-    },
+
     loginButton: {
         padding: 5,
         margin: 20,
