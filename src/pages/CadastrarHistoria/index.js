@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Text, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { BotaoPadrao, BotaoPadraoTexto, ContainerGeral, ContainerWhite, Titulo } from "../../styles";
+import { BotaoPadrao, BotaoPadraoTexto, ContainerGeral, ContainerWhite, InputCadastro, LabelError, Titulo } from "../../styles";
 import theme from '../../styles/theme.json'
 
 export default function CadastrarHistoria() {
@@ -25,83 +25,61 @@ export default function CadastrarHistoria() {
     }
     return (
         <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
-        <ContainerGeral>
-            <ContainerWhite>
-                <Titulo color='rosaEscuro' margin='0px 0px 10px 0px' padding='10px 0px 5px 20px'> Cadastrar</Titulo>
+            <ContainerGeral>
+                <ContainerWhite>
+                    <Titulo color='rosaEscuro' margin='0px 0px 10px 0px' padding='10px 0px 5px 20px'> Cadastrar</Titulo>
 
-                <Controller
-                    control={control}
-                    name="titulo"
-                    render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
-                            style={[styles.textoInput, { borderWidth: errors.titulo && 1, borderColor: errors.titulo && theme.colors.error }]}
-                            onChangeText={onChange}
-                            onBlur={onBlur}
-                            value={value}
-                            placeholder="Título do livro/Artigo..."
-                        />
-                    )}
-                />
-                {errors.titulo && <Text style={styles.labelError}>{errors.titulo?.message}</Text>}
-                <Controller
-                    control={control}
-                    name="autor"
-                    render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
-                            style={[styles.textoInput, { borderWidth: errors.autor && 1, borderColor: errors.autor && theme.colors.error }]}
-                            onChangeText={onChange}
-                            onBlur={onBlur}
-                            value={value}
-                            placeholder="Nome do autor..."
-                        />
-                    )}
-                />
-                {errors.autor && <Text style={styles.labelError}>{errors.autor?.message}</Text>}
-                <Controller
-                    control={control}
-                    name="link"
-                    render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
-                            style={[styles.textoInput, { borderWidth: errors.ano && 1, borderColor: errors.ano && theme.colors.error }]}
-                            onChangeText={onChange}
-                            onBlur={onBlur}
-                            value={value}
-                            placeholder="Link da publicação"
-                        />
-                    )}
-                />
-                {errors.ano && <Text style={styles.labelError}>{errors.ano?.message}</Text>}
-               
-                <BotaoPadrao
-                    onPress={handleSubmit(handleCadastrar)}>
-                    <BotaoPadraoTexto>Cadastrar</BotaoPadraoTexto>
-                </BotaoPadrao>
+                    <Controller
+                        control={control}
+                        name="titulo"
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <InputCadastro
+                                style={{ borderBottomWidth: errors.titulo && 1, borderColor: errors.titulo && theme.colors.error }}
+                                onChangeText={onChange}
+                                onBlur={onBlur}
+                                value={value}
+                                placeholder="Título do livro/Artigo..."
+                            />
+                        )}
+                    />
+                    {errors.titulo && <LabelError>{errors.titulo?.message}</LabelError>}
+                    <Controller
+                        control={control}
+                        name="autor"
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <InputCadastro
+                                style={{ borderBottomWidth: errors.autor && 1, borderColor: errors.autor && theme.colors.error }}
+                                onChangeText={onChange}
+                                onBlur={onBlur}
+                                value={value}
+                                placeholder="Nome do autor..."
+                            />
+                        )}
+                    />
+                    {errors.autor && <LabelError>{errors.autor?.message}</LabelError>}
+                    <Controller
+                        control={control}
+                        name="link"
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <InputCadastro
+                                style={{ borderBottomWidth: errors.link && 1, borderColor: errors.link && theme.colors.error }}
+                                onChangeText={onChange}
+                                onBlur={onBlur}
+                                value={value}
+                                placeholder="Link da publicação"
+                            />
+                        )}
+                    />
+                    {errors.link && <LabelError>{errors.link?.message}</LabelError>}
 
-            </ContainerWhite>
+                    <BotaoPadrao
+                        onPress={handleSubmit(handleCadastrar)}>
+                        <BotaoPadraoTexto>Cadastrar</BotaoPadraoTexto>
+                    </BotaoPadrao>
 
-        </ContainerGeral>
+                </ContainerWhite>
+
+            </ContainerGeral>
         </TouchableWithoutFeedback>
     )
 }
-
-const styles = StyleSheet.create({
-    tituloPrincipal: {
-        color: '#ff6766',
-        fontSize: 40,
-        fontWeight: "bold",
-        paddingTop: 10,
-        alignSelf: 'center'
-    },
-    textoInput: {
-        fontSize: 14,
-        marginBottom: 10,
-        marginLeft: 10,
-        marginRight: 10,
-    },
-    labelError: {
-        alignSelf: 'flex-start',
-        color: '#ff375b',
-        marginBottom: 8,
-        marginLeft: 10,
-    },
-})

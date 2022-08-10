@@ -72,3 +72,13 @@ export const Subtitulo = styled.Text`
     text-align: center;
     color: ${(props) => props.color ? theme.colors[props.color] : theme.colors.cinza};
 `
+export const LabelError = styled.Text`
+    align-self: flex-start;
+    color: ${theme.colors.error};
+    margin-bottom: 8px;
+    margin-left: 10px;
+`
+export const InputCadastro = styled.TextInput`
+    font-size: 14px;
+    margin: 0px 10px 10px 10px;
+`
