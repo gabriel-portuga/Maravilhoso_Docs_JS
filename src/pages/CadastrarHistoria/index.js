@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import React from "react";
 import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -15,7 +14,6 @@ export default function CadastrarHistoria() {
         link: yup.string().required("Informe um link!"),
     })
 
-    const navigation = useNavigation();
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     })

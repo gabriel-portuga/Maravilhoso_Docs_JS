@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, FlatList} from 'react-native';
 import * as OpenAnything from 'react-native-openanything';
-import { ContainerGeral } from "../../styles";
+import { AvatarContainer, AvatarImage, ContainerGeral, ContainerItensList, Titulo } from "../../styles";
 
 export default function Artigos() {
   
-    const Artigos = [ // Mudar tudo para ARTIGOS
+    const Artigos = [ 
         {id:"0", title:"Contos Folclóricos e Lendas Brasileiras", autor:"Jossi Borges",image: require('../../../assets/artigos_default.png'), pagina: 'https://www.companhiadasletras.com.br/trechos/41096.pdf'}, // Mudar para ARTIGO
 
         {id:"1", title:"Lendas Brasileiras", autor:"Luis Camara Cascudo", image: require('../../../assets/artigos_default.png'), pagina: 'http://www.multirio.rj.gov.br/media/PDF/pdf_4251.pdf'}, // Mudar para ARTIGO
@@ -23,21 +23,17 @@ export default function Artigos() {
 
     const Item = ({ title, autor, image, onPress }) => (
 
-        <View style={ styles.item }>
+        <ContainerItensList>
+            <AvatarContainer height='120px' width='24%' onPress={(onPress)}>
+                <AvatarImage style={{resizeMode:'stretch'}} source={ image }/>
+            </AvatarContainer>
 
-            <TouchableOpacity 
-            onPress={(onPress)}
-            style={ styles.avatarContainer }
-            >
-                <Image source={ image } style={ styles.avatar }/>
-            </TouchableOpacity>
-
-            <View style={styles.textContainer}>
-                <Text style={ styles.name }>{title}</Text>
-                <Text style={styles.autor}>{autor}</Text>
+            <AvatarContainer height='120px' width='76%' justifyContent='center'>
+                <Titulo size='24px' margin='0px 0px 0px 16px' alignSelf='flex-start' color='branco'>{title}</Titulo>
+                <Titulo size='16px' margin='0px 0px 0px 16px' alignSelf='flex-start' color='branco'>{autor}</Titulo>
                 <Text style={{ marginLeft: 16, alignSelf: 'flex-start'}}> {'<- Click aqui'}</Text>
-            </View>    
-        </View>
+            </AvatarContainer>    
+        </ContainerItensList>
       );
 
     const renderItem = ({ item }) => (
@@ -48,11 +44,10 @@ export default function Artigos() {
         onPress={() => OpenAnything.Open(item.pagina)}
         />
     );
-    
 
     return (
         <ContainerGeral>
-          <Text style={{ alignSelf: 'center', color: 'white', fontSize: 40, fontWeight: 'bold', marginTop: 16}}>Artigos</Text>
+          <Titulo alignSelf='center' color='branco' size='40px' margin='16px 0px 0px 0px'>Artigos</Titulo>
           <FlatList
             data={Artigos}
             renderItem={renderItem}
@@ -61,53 +56,3 @@ export default function Artigos() {
         </ContainerGeral>
     );
 }
-
-const styles = StyleSheet.create({
-
-  item: {
-    flex: 1,
-    flexDirection: 'row',    
-    alignItems: 'center',
-    paddingVertical: 16,
-    paddingLeft:10,
-    paddingRight: 10, 
-        
-  },
-
-  avatarContainer: {        
-    height: 120,
-    width: '24%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  
-  avatar: {
-    height: '100%',
-    width: '100%',
-    resizeMode: 'stretch',
-    
-  },
-
-  textContainer: {
-    height: 120,
-    width: '76%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  name: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginLeft: 16,
-    alignSelf: 'flex-start',
-    color: 'white'
-  },
-  autor: {
-    fontSize: 16,
-    marginLeft: 16,
-    alignSelf: 'flex-start',
-    color: 'white'
-  },
-
-});
-

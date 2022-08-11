@@ -14,7 +14,6 @@ export const ContainerWhite = styled.View`
     margin-top: ${(props) => props.marginTop || '40%'};
     flex-direction: ${(props) => props.direction || 'column'};
     justify-content: space-around;
-
 `
 export const ContainerLogoPrincipal = styled.View`
     flex:2;
@@ -24,6 +23,12 @@ export const ContainerLogoPrincipal = styled.View`
     padding-top: 15%;
     padding-left: 15%;
     padding-right: 15%;
+`
+export const ContainerItensList = styled.View`
+    flex:1;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px 0px 10px;
 `
 export const BotaoPadrao = styled.TouchableOpacity`
     margin: 24px;
@@ -45,15 +50,14 @@ export const ContainerPrimario = styled.View`
     justify-content: space-around;
 `
 export const AvatarContainer = styled.TouchableOpacity`
-    height: 200px;
-    width: 200px;
-    justify-content: space-around;
+    height: ${(props) => props.height || '200px'};
+    width: ${(props) => props.width || '200px'};
+    justify-content: ${(props) => props.justifyContent || 'space-around'};
     align-items: center;
 `
 export const AvatarImage = styled.Image`
     height: 85%;
     width: 85%;
-    resize: ${(props) => props.reSize || 'none'};
 `
 export const Titulo = styled.Text`
     font-size: ${(props) => props.size || '36px'};
@@ -64,7 +68,6 @@ export const Titulo = styled.Text`
     align-self: ${(props) => props.alignSelf || 'auto'};
     padding: ${(props) => props.padding || '0px'};
 `
-
 export const Subtitulo = styled.Text`
     font-weight: ${(props) => props.fontWeight || 'normal'};
     padding-top: ${(props) => props.padding || '0px'};
