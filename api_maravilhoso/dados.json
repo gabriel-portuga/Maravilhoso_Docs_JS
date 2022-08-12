@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1484487347,
+    "nome": "Gabriel ",
+    "email": "kenigabriel@hotmail.com",
+    "dados": {},
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQ4NDQ4NzM0NywiaWF0IjoxNjU5OTEwNzE2fQ.oHhe8gvlCKWTSesueSaO6NZweJMuzFuzury5pJQi9E0",
+    "hash": "$2b$10$68WKOM4cCFSMI4n8QRHOcO3y.AAGKxAIt9slTiYzmK24wBMm.fDCa"
+  },
+  {
+    "id": 6690466529,
+    "nome": "Cacau",
+    "email": "cacau@cau.com",
+    "dados": {},
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjY5MDQ2NjUyOSwiaWF0IjoxNjU5OTExNjQyfQ.-jcJ7MH6wP5duE42Ae7nB07Js1X-TQEhPtAy-tOudmU",
+    "hash": "$2b$10$hLOfZOoTk63Ev5CJ8F3UpOwdyyI7Gu5AMIxHPIGuO/5yUBwhQAMly"
+  },
+  {
+    "id": 7539409434,
+    "nome": "Cacau marapodi",
+    "email": "claudiamarapodi@gmail.com",
+    "dados": {},
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzUzOTQwOTQzNCwiaWF0IjoxNjYwMDExNDM4fQ.vrn9-9H7IDsatZW_bAxreRPN2fj6feIGiZB91V1LKKY",
+    "hash": "$2b$10$SB1eqUj/9rniBzxASi12a.FC.diRhA5TU3zisRxU67iVGbB/XZVQW"
+  },
+  {
+    "id": 6214303151,
+    "nome": "Teste",
+    "email": "teste@teste.com",
+    "dados": {},
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIxNDMwMzE1MSwiaWF0IjoxNjYwMTY4MzY3fQ.wEBBYDL-2i1Uo39g9TY_KX323s4oD8cmVejgTWX6iiA",
+    "hash": "$2b$10$c2lhQNN9QCWQa1nGOZjr8euG7G0Boup5dPln1wU0Lyaf5jj44uHCm"
+  }
+]

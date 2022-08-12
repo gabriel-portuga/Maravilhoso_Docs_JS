@@ -1,75 +1,83 @@
-import React, { useState} from "react";
-import { ContainerGeral, Menssage, Title, TextoInput, ButtonPrincipal, ButtonText, ButtonRegister, RegisterText, OlhoMagico, TextoInputSenha } from "./styles";
-import { StyleSheet, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-
+import React, { useState, useContext } from "react";
+import { TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { HelperText } from "react-native-paper";
+import { Context } from "../../context/authContext";
 import * as Animatable from 'react-native-animatable'
+import EmailInput from "../../components/EmailInput";
+import PasswordInput from "../../components/PasswordInput";
+import { BotaoPadrao, BotaoPadraoTexto, ContainerGeral, ContainerWhite, Subtitulo, Titulo } from "../../styles";
 
-import { useNavigation } from "@react-navigation/native";
+const SignIn = ({ navigation }) => {
+    const { state, loginUser, setLoginError } = useContext(Context);
 
-export default function SignIn() {
-    const navigation = useNavigation();
-
-    const [input, setInput] = useState('');
-    const [hidePass, setHidePass] = useState(true);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(true);
 
     return (
-        <ContainerGeral>
-            <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-                <Menssage>Bem-vinde</Menssage>
-            </Animatable.View>
+        <TouchableWithoutFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()}>
+            <ContainerGeral>
+                <ContainerWhite >
+                    <Animatable.View animation="fadeInLeft" delay={500}>
+                        <Titulo alignSelf='center' padding='10px 0px 0px 0px'>Bem-vinde</Titulo>
+                    </Animatable.View>
 
-            <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-                <Title>Email</Title>
-                <TextoInput 
-                    placeholder="Digite um email..."
-                />
+                    <Titulo color='rosaEscuro' margin='0px 0px 10px 0px' padding='10px 0px 0px 20px'>Login</Titulo>
 
-                
-                <Title>Senha</Title>
-                <View style={{flexDirection: 'row'}}>
-                    <TextoInputSenha 
-                        placeholder="Digite sua senha..."
-                        value={input}
-                        onChangeText={(texto) => setInput(texto)}
-                        secureTextEntry={hidePass}
+                    <EmailInput
+                        value={email}
+                        setValue={setEmail}
                     />
-                    <OlhoMagico onPress={ () => setHidePass(!hidePass)}>
-                        { hidePass ?
-                            <Ionicons name="eye" color="black" size={25}/> :
-                            <Ionicons name="eye-off" color="black" size={25}/>
-                        }
-                    </OlhoMagico>
-                </View>
-                <ButtonPrincipal
-                onPress={() => navigation.navigate('Principal')}
-                >
-                    <ButtonText>Acessar</ButtonText>
-                </ButtonPrincipal>
-                
-                <ButtonRegister
-                onPress={() => navigation.navigate('CadastrarConta')}
-                >
-                    <RegisterText>Não possui uma conta? Cadastre-se</RegisterText>
-                </ButtonRegister>
+                    <PasswordInput
+                        value={password}
+                        setValue={setPassword}
+                        showPassword={showPassword}
+                        setShowPassword={setShowPassword}
+                    />
+                    {state.loginError ? (
+                        <HelperText
+                            style={{ alignSelf: "center" }}
+                            type="error"
+                            visible={state.loginError}
+                        >
+                            Login inválido
+                        </HelperText>
+                    ) : null}
 
-            </Animatable.View>
-        </ContainerGeral>
+                    <BotaoPadrao
+                        onPress={() => {
+                            if ((email || password) === "") {
+                                setLoginError(true);
+                                return;
+                            }
+                            loginUser(email, password);
+
+                            setEmail("");
+                            setPassword("");
+                        }}
+                    >
+                        <BotaoPadraoTexto> Login </BotaoPadraoTexto>
+                    </BotaoPadrao>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            setLoginError(false);
+                            navigation.navigate("SignUp")
+                        }}
+                        style={{ alignSelf: "center", marginBottom: 10, }}
+                    >
+                        <Subtitulo color='preto'>
+                            Não tem uma conta?{" "}
+                            <Subtitulo color='rosaEscuro' fontWeight='bold'>
+                                Crie uma
+                            </Subtitulo>
+                        </Subtitulo>
+                    </TouchableOpacity>
+
+                </ContainerWhite>
+            </ContainerGeral>
+        </TouchableWithoutFeedback>
     );
-}
+};
 
-const styles = StyleSheet.create({
-    containerHeader:{
-        marginTop: '14%',
-        marginBottom: '8%',
-        paddingStart: '5%'
-    },
-    containerForm:{
-        backgroundColor: '#fff',
-        flex:1,
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        paddingStart: '5%',
-        paddingEnd: '5%'
-    }
-})
+export default SignIn;
